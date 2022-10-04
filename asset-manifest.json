@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/farmhub/static/css/main.6e744d1b.css",
+    "main.js": "/farmhub/static/js/main.ec8d7cf0.js",
+    "static/js/787.1ac3479f.chunk.js": "/farmhub/static/js/787.1ac3479f.chunk.js",
+    "static/media/Ajaxloader.gif": "/farmhub/static/media/Ajaxloader.ea210c9a21e120f82d79.gif",
+    "static/media/logo.jpg?1": "/farmhub/static/media/logo.8f6f13625495fc3876b2.jpg",
+    "static/media/fontawesome-webfont.svg?v=4.5.0": "/farmhub/static/media/fontawesome-webfont.d9b392ddb6b9040c3c66.svg",
+    "static/media/fontello.svg?4089732": "/farmhub/static/media/fontello.03ade6140e7d5f8fc994.svg",
+    "static/media/pest.jpg": "/farmhub/static/media/pest.f36ba673815d90a55050.jpg",
+    "static/media/shredder.jpg": "/farmhub/static/media/shredder.031824f740f2bd0e191a.jpg",
+    "static/media/seeder.jpg": "/farmhub/static/media/seeder.dd121c96847d1b9e8f4d.jpg",
+    "static/media/generator.jpg": "/farmhub/static/media/generator.17f0679ba9896b1a3f81.jpg",
+    "static/media/baler.jpg": "/farmhub/static/media/baler.f4bb2d03f08ccaf66296.jpg",
+    "static/media/fontello.eot?4089732": "/farmhub/static/media/fontello.2823bc9c1c536960e63c.eot",
+    "static/media/fontello.ttf?4089732": "/farmhub/static/media/fontello.8b92f302fe7514349684.ttf",
+    "static/media/soilprep.jpg": "/farmhub/static/media/soilprep.c27b6f9781a70d8821c7.jpg",
+    "static/media/fontawesome-webfont.ttf?v=4.5.0": "/farmhub/static/media/fontawesome-webfont.39f38361e3563f688a32.ttf",
+    "static/media/machinery.jpg": "/farmhub/static/media/machinery.87818bc9b9a3a0521d03.jpg",
+    "static/media/app.jpg": "/farmhub/static/media/app.7a905d83bba6047db8ad.jpg",
+    "static/media/fontello.woff?4089732": "/farmhub/static/media/fontello.6bc7d8bd2200cd44e73c.woff",
+    "static/media/services.png": "/farmhub/static/media/services.8dd6f4471421663d8d0d.png",
+    "static/media/tractor.png": "/farmhub/static/media/tractor.7db989910b8ae687d1a0.png",
+    "static/media/fontawesome-webfont.woff?v=4.5.0": "/farmhub/static/media/fontawesome-webfont.83ebdc9f5008e623f9de.woff",
+    "static/media/bg.jpg": "/farmhub/static/media/bg.9b89323ab02fa065c69c.jpg",
+    "static/media/fontawesome-webfont.eot": "/farmhub/static/media/fontawesome-webfont.48184c4732af4d6151b7.eot",
+    "static/media/bg3.jpg": "/farmhub/static/media/bg3.d03dad24f91ed3f0566b.jpg",
+    "index.html": "/farmhub/index.html",
+    "main.6e744d1b.css.map": "/farmhub/static/css/main.6e744d1b.css.map",
+    "main.ec8d7cf0.js.map": "/farmhub/static/js/main.ec8d7cf0.js.map",
+    "787.1ac3479f.chunk.js.map": "/farmhub/static/js/787.1ac3479f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6e744d1b.css",
+    "static/js/main.ec8d7cf0.js"
+  ]
+}
