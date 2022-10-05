@@ -3,8 +3,15 @@ import PropTypes from 'prop-types';
 import Navbar from "./navbar";
 import Footer from "./Footer";
 const Login = () => {
-    function LoginUser(e){
-        
+    async function LoginUser(e){
+        console.log(e);
+        e.preventDefault();
+        let usename=document.getElementById("email").value;
+        let password=document.getElementById("password").value;
+        let url="https://x8ki-letl-twmt.n7.xano.io/api:HHq4b1yw/auth/login?email="+usename+"&password="+password;
+        console.log(url);
+        let res=await fetch(url,{method:"post"})
+        console.log(res);
     }
     return (
         <>
@@ -19,7 +26,7 @@ const Login = () => {
 
 
 
-                                    <form action="/Login" accept-charset="utf-8" method="post">
+                                    <form action="http://localhost:3000/" accept-charset="utf-8" method="post" onSubmit={LoginUser()}>
                                         <div className="form-group">
                                             <label for="sender-email" className="control-label">
                                                 Username:

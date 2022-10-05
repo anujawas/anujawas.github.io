@@ -2,28 +2,33 @@ import Image00015 from "../assets/images/category/tractor.png"
 import seedr from "../assets/images/category/seeder.jpg"
 import React, { Component, useState, useEffect } from "react";
 import useStateData from "./stateData";
+import useItemdata from "./itemData";
 const Results = () => {
-    const [showstyle, setShowStyle] =useState({display:"block"})
-    const [hidestyle,setHideStyle]=useState({display:"none"})
+    const [showstyle, setShowStyle] = useState({ display: "block" })
+    const [hidestyle, setHideStyle] = useState({ display: "none" })
     function handleclickreveal(e) {
-        setShowStyle({display:"none"});
-        setHideStyle({display:"block"});
+        setShowStyle({ display: "none" });
+        setHideStyle({ display: "block" });
 
     }
     // console.log(showstyle, hidestyle);
     function handleclickhide(e) {
-        setShowStyle({display:"block"});
-        setHideStyle({display:"none"});
+        setShowStyle({ display: "block" });
+        setHideStyle({ display: "none" });
 
     }
 
-    const [location, setLocation]=useState({hidden:[], public:[]});
+    const [location, setLocation] = useState({ hidden: [], public: [] });
     var list = useStateData();
     useEffect(() => {
-        setLocation({hidden:list.slice(8,list.length), public:list.slice(0,8)})
-    },[list]);
+        setLocation({ hidden: list.slice(8, list.length), public: list.slice(0, 8) })
+    }, [list]);
     // console.log(location);
-
+    const [item, setItem]=useState([]);
+    var li=useItemdata();
+    useEffect(()=>{
+        setItem(li);
+    },[li])
     return (
         <div className="main-container">
             <div className="container">
@@ -46,8 +51,8 @@ const Results = () => {
                                 <div className="locations-list  list-filter">
                                     <h5 className="list-title"><strong><a href="#">Location</a></strong></h5>
                                     <ul className="browse-list list-unstyled long-list">
-                                        {location.public.map(item=>(<li key={item.id}><a href={"/state/"+item.state} title="Albany">{item.state}</a></li>))}
-                                        {location.hidden.map(item=>(<li key={item.id} style={hidestyle} className="maxlist-hidden"><a href={"/state/"+item.state} title="Albany">{item.state}</a></li>))}
+                                        {location.public.map(item => (<li key={item.id}><a href={"/state/" + item.state} title="Albany">{item.state}</a></li>))}
+                                        {location.hidden.map(item => (<li key={item.id} style={hidestyle} className="maxlist-hidden"><a href={"/state/" + item.state} title="Albany">{item.state}</a></li>))}
 
                                     </ul>
                                     <p className="maxlist-more" style={showstyle} onClick={(e) => handleclickreveal(e)}><a >View More (29)</a></p>
@@ -100,50 +105,28 @@ const Results = () => {
 
                             <div className="adds-wrapper">
                                 <div className="tab-content">
-                                    <div className="tab-pane active" id="allAds"><div className="item-list">
-                                        <div className="cornerRibbons topAds">
-                                            <a href="#"> Top Ad</a>
-                                        </div>
-                                        <div className="col-sm-2 no-padding photobox">
-                                            <div className="add-image"><span className="photo-count"><i className="fa fa-camera"></i> 2 </span> <a href="#"><img className="thumbnail no-margin" src={Image00015} alt="img" /></a>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-sm-7 add-desc-box">
-                                            <div className="add-details">
-                                                <h5 className="add-title"><a href="ads-details.html">
-                                                    Tractor and Trolley </a></h5>
-                                                <span className="info-row"> <span className="add-type business-ads tooltipHere" data-toggle="tooltip" data-placement="right" title="Promotional Ad">P </span> <span className="date"><i className=" icon-clock"> </i> Today 1:21 pm </span> - <span className="category">Tractor and Machinery </span>- <span className="item-location"><i className="fa fa-map-marker"></i> Batala </span> </span></div>
-                                        </div>
-
-                                        <div className="col-sm-3 text-right  price-box">
-                                            <h2 className="item-price"> Rs 1500/Day </h2>
-                                            <a className="btn btn-danger  btn-sm make-favorite"> <i className="fa fa-certificate"></i> <span>Top Ads</span> </a> <a className="btn btn-default  btn-sm make-favorite"> <i className="fa fa-heart"></i> <span>Save</span> </a></div>
-
-                                    </div>
-
-                                        <div className="item-list">
-                                            <div className="cornerRibbons featuredAds">
-                                                <a href="#"> Featured Ad</a>
+                                    <div className="tab-pane active" id="allAds">
+                                        {item.map(val=>( <div className="item-list">
+                                            <div className="cornerRibbons topAds">
+                                                <a href="#"> {val.prem}</a>
                                             </div>
                                             <div className="col-sm-2 no-padding photobox">
-                                                <div className="add-image"><span className="photo-count"><i className="fa fa-camera"></i> 2 </span> <a href="#"><img className="thumbnail no-margin" src={seedr} alt="img" /></a>
+                                                <div className="add-image"><span className="photo-count"><i className="fa fa-camera"></i> {val.id} </span> <a href="#"><img className="thumbnail no-margin" src={val.img} alt="img" /></a>
                                                 </div>
                                             </div>
 
                                             <div className="col-sm-7 add-desc-box">
                                                 <div className="add-details">
                                                     <h5 className="add-title"><a href="ads-details.html">
-                                                        Happy seeder - this weekend only </a></h5>
-                                                    <span className="info-row"> <span className="add-type business-ads tooltipHere" data-toggle="tooltip" data-placement="right" title="Promotional Ad">P </span> <span className="date"><i className=" icon-clock"> </i> 3 days ago 1:21 pm </span> - <span className="category">Seeders and Planters </span>- <span className="item-location"><i className="fa fa-map-marker"></i> Jalandhar </span> </span></div>
+                                                        {val.title +"-"+val.disc} </a></h5>
+                                                    <span className="info-row"> <span className="add-type business-ads tooltipHere" data-toggle="tooltip" data-placement="right" title="Promotional Ad">P </span> <span className="date"><i className=" icon-clock"> </i> {val.timeAgo+" "+val.time}</span> - <span className="category">{val.category}</span>- <span className="item-location"><i className="fa fa-map-marker"></i>{val.location}</span> </span></div>
                                             </div>
 
                                             <div className="col-sm-3 text-right  price-box">
-                                                <h2 className="item-price"> Rs 2500/acre </h2>
-                                                <a className="btn btn-danger  btn-sm make-favorite"> <i className="fa fa-certificate"></i> <span>Featured Ads</span>
-                                                </a> <a className="btn btn-default  btn-sm make-favorite"> <i className="fa fa-heart"></i> <span>Save</span> </a></div>
+                                                <h2 className="item-price"> {"Rs"+val.rate+"/"+val.type} </h2>
+                                                <a className="btn btn-danger  btn-sm make-favorite"> <i className="fa fa-certificate"></i> <span>{val.prem}</span> </a> <a className="btn btn-default  btn-sm make-favorite"> <i className="fa fa-heart"></i> <span>Save</span> </a></div>
 
-                                        </div>
+                                        </div>))}
                                     </div>
                                 </div>
                             </div>

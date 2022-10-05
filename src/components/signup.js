@@ -1,35 +1,63 @@
-import React,{useState} from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
 import Navbar from "./navbar";
 import Error from "./error";
+import RegSuccess from "./RegisterSuccess";
 const SignUp = () => {
+    const [loc, setLoc] = useState({});
+    useEffect(() => {
+        var a = {}
+        navigator.geolocation.getCurrentPosition((position) => {
+            let lat = position.coords.latitude;
+            let long = position.coords.longitude;
+
+            a={
+                type: "point",
+                data:{
+                    lng:long,
+                    lat:lat
+                }
+            }
+            setLoc(a);
+        });
+
+    },[])
+    console.log(loc);
     const [stcode, setStCode]=useState(100);
     async function RegisterUser(e) {
         // console.log(e);
         e.preventDefault();
+
         let name = document.getElementById("name").value;
         let phone = document.getElementById("phone").value;
         let email = document.getElementById("email").value;
         let type = document.getElementById("usertype").value;
         let password = document.getElementById("password").value;
-        console.log(name, phone, email, type, password);
-        let url = "https://x8ki-letl-twmt.n7.xano.io/api:HHq4b1yw/user?name=" + name + "&email=" + email + "&phone=" + phone + "&usertype=" + type + "&password=" + password;
-        console.log(url);
-        const res= await fetch(url, { method: "post" })
-        if(res.status===500){
+        let displayphone=document.getElementById("displayphone");
+        if(displayphone.checked){
+            displayphone=true;
+        }else{
+            displayphone=false;
+        }
+        console.log(name, phone, email, type, password,displayphone);
+        let url = "https://x8ki-letl-twmt.n7.xano.io/api:HHq4b1yw/auth/signup?name=" + name + "&email=" + email + "&phone=" + phone + "&usertype=" + type + "&password=" + password+"&loc="+JSON.stringify(loc)+"&displayphone="+displayphone;
+        console.log(url)
+        var res =await fetch(url,{method:"post"})
+        if(res.status===403){
             setStCode(500);
         }else if(res.status===200){
             setStCode(200);
         }
+        
     }
     if(stcode===200){
-        window.setTimeout(alert("You Are Registered SuccessFully!!You will be Redirect to Home page"), 2000);
-        window.close();
-        window.location.replace("http://localhost:3000/");
+        window.setTimeout(<RegSuccess/>, 10000);
+        window.location.replace("http://localhost:3000/Login");
         
     }else if(stcode===500){
         return(<Error/>)
     }
+    // RegisterUser();
     return (
         <>
             <Navbar />
@@ -44,12 +72,9 @@ const SignUp = () => {
                                     </i>
                                     Create your account, Its free
                                 </h2>
-
-
-
                                 <div className="row">
                                     <div className="col-sm-12">
-                                        <form className="form-horizontal form-validate" action="http://localhost:3000/" method="post" onSubmit={e=>RegisterUser(e)}>
+                                        <form className="form-horizontal form-validate" action="http://localhost:3000/" method="post" onSubmit={e => RegisterUser(e)}>
                                             <fieldset>
 
                                                 <div className="form-group required">
@@ -203,7 +228,7 @@ const SignUp = () => {
             <Footer />
         </>
     );
-    
+
 }
 
 export default SignUp;
